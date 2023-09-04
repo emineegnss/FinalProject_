@@ -8,12 +8,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            // CategoryTest();
-
-            // ProductTest();
+            //CategoryTest();
+            //ProductTest();
             //TestDto();
            
-                ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal());
             var result = productManager.GetProductDetails();
             if (result.Success)
             {
