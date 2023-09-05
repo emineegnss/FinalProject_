@@ -1,12 +1,15 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using FluentValidation;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace Business.Concrete
@@ -20,19 +23,12 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            //validation
-           var context = new ValidationContext<Product>(product);
-            ProductValidator productValidator = new ProductValidator();
-            var result = productValidator.Validate(context);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
+            //validation 
+            _productDal.Add(product);
 
-           _productDal.Add(product);
-           
             return new SuccessResult(Messages.ProductAdded);
         }
 
@@ -47,7 +43,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=> p.CategoryId == id),Messages.ProductListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id), Messages.ProductListed);
         }
 
         public IDataResult<List<Product>> GetAllByUnitPrice(decimal min, decimal max)
@@ -57,7 +53,7 @@ namespace Business.Concrete
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p=> p.ProductId == productId));
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
@@ -65,6 +61,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
-        
+
     }
 }
