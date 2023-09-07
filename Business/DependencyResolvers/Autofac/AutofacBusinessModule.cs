@@ -25,7 +25,8 @@ namespace Business.DependencyResolvers.Autofac
         {
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance(); //Birisi senden IProductServices isterse ona Product Manager gönder
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
-
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance(); 
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

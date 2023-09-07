@@ -12,7 +12,7 @@ namespace ConsoleUI
             //ProductTest();
             //TestDto();
            
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             var result = productManager.GetProductDetails();
             if (result.Success)
             {
@@ -31,7 +31,7 @@ namespace ConsoleUI
 
         private static void TestDto()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             foreach (var product in productManager.GetProductDetails().Data)
             {
                 Console.WriteLine(product.ProductName + " / " + product.CategoryName);
@@ -42,8 +42,7 @@ namespace ConsoleUI
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
             var item = categoryManager.GetById(3);
-            Console.WriteLine(item.CategoryName);
-            foreach (var category in categoryManager.GetAll())
+            foreach (var category in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(category.CategoryName);
             }
@@ -52,7 +51,7 @@ namespace ConsoleUI
         private static void ProductTest()
         {
             Console.WriteLine("**************");
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             foreach (var product in productManager.GetAll().Data)
             {
                 //Burada Product Name ile Category Name gelmesini isteyebiliriz (DTO ile gerçekleştirebiliriz)
