@@ -75,16 +75,16 @@ namespace Business.Concrete
         {
 
             var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count;
-            if (result >= 10)
+            if (result >= 1000)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
-            throw new NotImplementedException();
+            return new SuccessResult();
         }
         private IResult CheckIfProductCountOfCategory(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
-            if (result >= 10)
+            if (result >= 1000)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }

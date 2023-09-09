@@ -15,7 +15,6 @@ namespace Core.DependencyResolvers
         public void Load(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<Stopwatch>();
         }
     }
 }
