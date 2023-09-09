@@ -11,19 +11,24 @@ namespace Business.Constants
     public static class Messages
     {
         //Public olduğu için pascal case yazılır ama private olsaydı camelcase yazılırdı
-        public static string ProductAdded = "Ürün Eklendi";
-        public static string ProductNameInvalid = "Geçersiz";
-        public static string MaintenanceTime = "Sistem Bakımda";
-        public static string ProductListed = "Listelendi";
-        public static string ProductCountOfCategoryError = "Bir kategoride en fazla 10 ürün olabilir";
-        public static string ProductNameAlreadyExists = "Bu isimde başka bir ürün vardır";
-        public static string CategoryLimitExceded = "Kategori Limiti aşıldı ve ürün eklenemiyor";
-        public static string AuthorizationDenied = "Yetkimiz Yok";
-        public static string AccessTokenCreated;
-        public static string UserAlreadyExists;
-        public static string PasswordError;
-        public static string SuccessfulLogin;
-        public static string UserNotFound;
-        public static string UserRegistered;
+        public static string ProductAdded = "Ürün eklendi";
+        public static string ProductUptaded = "Ürün güncellendi";
+        public static string ProductNameInvalid = "Ürün ismi gecersiz";
+        public static string MaintenanceTime = "Sistem bakimda";
+        public static string ProductsListed = "Ürünler listelendi";
+        public static string ProductCountOfCategoryError = "Bir kategoride en fazla {0} olabilir!";
+        public static string ProductNameAlreadyExists = "Ayni ürün adina sahip baska bir ürün var!";
+
+        public static string CategoryLimitExceded = "Kategori limiti asildigi icin yeni ürün eklenemiyor!";
+
+        public static string AuthorizationDenied = "Yetkiniz yok.";
+        public static string EmailAlreadyExist = "Bu maile ait bir kullanici daha önce kayit edilmistir!";
+        public static string UserAdded = "Kullanici eklendi";
+        public static string UserRegistrationSuccess = "Kullanici kaydi basari ile gerceklestirilmistir";
+        public static string UserNotFound = "Kullanici bulunamadi";
+        public static string PasswordIsWrong = "Parola Hatasi";
+        public static string LoginIsSuccessfully = "Giris Basarili";
+        public static string UserAlreadyExist = "Kullanici mevcut";
+        public static string TokenCreatedSuccessfully = "Token basarili sekilde olusturuldu";
     }
 }

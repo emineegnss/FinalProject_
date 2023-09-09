@@ -9,20 +9,21 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, NorthwindContext>, IUserDal
-    {
-        public List<OperationClaim> GetClaims(User user)
+    
+        public class EfUserDal : EfEntityRepositoryBase<User, NorthwindContext>, IUserDal
         {
-            using (var context = new NorthwindContext())
+            public List<OperationClaim> GetClaims(User user)
             {
-                var result = from operationClaim in context.OperationClaims
-                             join userOperationClaim in context.UserOperationClaims
-                                 on operationClaim.OperationClaimId equals userOperationClaim.OperationClaimId
-                             where userOperationClaim.UserId == user.UserId
-                             select new OperationClaim { OperationClaimId = operationClaim.OperationClaimId, Name = operationClaim.Name };
-                return result.ToList();
-
+                using (var context = new NorthwindContext())
+                {
+                    var result = from operationClaim in context.OperationClaims
+                                 join userOperationClaim in context.UserOperationClaims
+                                     on operationClaim.OperationClaimId equals userOperationClaim.OperationClaimId
+                                 where userOperationClaim.UserId == user.UserId
+                                 select new OperationClaim { OperationClaimId = operationClaim.OperationClaimId, Name = operationClaim.Name };
+                    return result.ToList();
+                }
             }
         }
-    }
+    
 }
